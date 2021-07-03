@@ -20,6 +20,10 @@ body {
     border-radius: 30px;
     box-shadow: 0px 0px 150px rgba(13, 13, 13, 0.9);
     margin: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 #result {
     height: 40%;
