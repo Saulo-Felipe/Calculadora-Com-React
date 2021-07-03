@@ -1,0 +1,188 @@
+* {
+    box-sizing: border-box;
+    font-family: Courier New;
+}
+body {
+    background-image:linear-gradient(#54aec9, #195266);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+.App {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+#body-calculator {
+    height: 600px;
+    width: 300px;
+    background-color: #172d67;
+    border-radius: 30px;
+    box-shadow: 0px 0px 150px rgba(13, 13, 13, 0.9);
+    margin: auto;
+}
+#result {
+    height: 40%;
+    position: relative;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    color: white;
+    transition: all 0.5s ease;
+}
+#ResultValue {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.5rem;
+    top: 45%;
+    left: 100%;
+    padding-right: 15px;
+    transform: translate(-100%, -50%);
+    text-align: right;
+    width: 100%;
+}
+#ResultValue > span {
+    color: rgba(255, 254, 254, 0.3);
+}
+.ResultOficial {
+    position: relative;
+    top: 60%;
+    transform: translateY(-50%;);
+    font-size: 3rem;
+    text-align: right;
+    padding-right: 15px;
+}
+#numbers {
+    height: 60%;
+    width: 75%;
+    float: left;
+}
+#operators {
+    height: 60%;
+}
+.buttons {
+    width: 33.333335%;
+    height: 25%;
+    font-size: 40px;
+    background-color: #050c26;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.buttons-operator {
+    width: 25%;
+    height: 16.666666666666668%;
+    font-size: 40px;
+    background-color: #0a173a;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.apagar {
+    background-image: url("./images/dark-delete.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 35px;
+    color: transparent !important;
+}
+.zero {
+    border-bottom-left-radius: 30px;
+}
+.sum {
+    border-bottom-right-radius: 30px;
+}
+
+
+/* =============| Config ==============*/
+
+/*dark mode class*/
+.dark-bg {
+    background-color: #172d67;
+    color: white;
+}
+.dark-btn {
+    background-color: #050c26;
+    color: white;
+}
+.dark-btn:hover {
+    background-color: #0b1330;
+}
+.dark-btn-Oper {
+    background-color: #0a173a;
+    color: white;
+}
+.dark-btn-Oper:hover {
+    background-color: #081333;
+}
+
+/* No dark mode class*/
+.noDark-bg {
+    background-color: #9db3ed;
+    color: black !important;
+}
+.noDark-btn {
+    background-color: #d3dce2;
+    color: #535353;
+}
+.noDark-btn:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+.noDark-btn-Oper {
+    background-color: #fffdff;
+    color: #5770a9;
+}
+.noDark-btn-Oper:hover {
+    background-color: rgba(255, 255, 255, 0.80);
+}
+
+
+#config {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+}
+#togle {
+    background-color: #6878a2;
+    height: 30px;
+    width: 55px;
+    border-radius: 50px;
+    position: relative;
+    cursor: pointer;
+}
+#on {
+    background-image: url('./images/lua.png');
+    background-size: cover;
+    background-position: center;
+    background-color: #fbfff7;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 5px;
+    border-radius: 50%;
+    left: 5px;
+    transition: all 0.5s ease;
+}
+#off {
+    background-image: url('./images/sun.png');
+    background-size: cover;
+    background-position: center;
+    background-color: transparent;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 5px;
+    border-radius: 50%;
+    left: 30px;
+    transition: all 0.5s ease;
+}
+
+.turnOn {
+    opacity: 1;
+    transform: scale(1);
+}
+.turnOff {
+    opacity: 0;
+    transform: scale(0)
+}
