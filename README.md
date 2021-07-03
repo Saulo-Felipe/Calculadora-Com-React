@@ -7,14 +7,16 @@ O código pode não está escrito de acordo com as melhores práticas, pois na �
 
 <img src="./desktop-dark.png" width="100%">
 <img src="./desktop-white.png" width="100%">
-<img src="./mobile-dark.png" width="49%">
-<img src="./mobile-white.png" width="49%">
+<div>
+	<img src="./mobile-dark.jpeg" width="47%" style="display: inline-block;">
+	<img src="./mobile-white.jpeg" width="47%" style="display: inline-block;">
+</div>
 
-### Getting Started
+## Getting Started
 ### 1. `yarn create-react-app`
 Apenas isso, depois adicione o código á pasta criada ;)
 *o arquivo `server.js` só é necessário para o deploy*
 
-# Demo
+## Demo
 
-➡️ <a href="https://calculadora-react-saulo.herokuapp.com/" target="_blank">
+➡️ <a href="https://calculadora-react-saulo.herokuapp.com/" target="_blank">https://calculadora-react-saulo.herokuapp.com/</a>
