@@ -34,7 +34,7 @@
 ## 🎨 Layout <a id="layout"></a>
 
 <a href="https://calculadora-react-saulo.herokuapp.com/"><img src="./src/images/badge.png"/></a>
-<p>*O Layout completo do app está disponível na hospedagem <a href="https://calculadora-react-saulo.herokuapp.com/">Heroku</a></p>
+<p>*O Layout completo do app está disponível na hospedagem <a href="https://calculadora-react-saulo.herokuapp.com/">Heroku</a></p> (O carregamento da página pode demorar alguns segundos quando for entrar pela primeira vez)
 
 <h3>Mobile (web)</h3>
 <p align="center">
@@ -70,7 +70,7 @@ $ npm install
 
 ## 🤖 Tecnologias <a id="tecnologias"></a>
 
-Neste simples app, foram utilizado as seguintes tcnologias: 
+Neste simples app, foram utilizadas as seguintes tcnologias: 
 
 * React <img src="./src/images/react.png"></img>
 * HTML5 <img src="./src/images/html.png"></img>
