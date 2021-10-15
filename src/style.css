@@ -1,192 +1,152 @@
 * {
-    box-sizing: border-box;
-    font-family: Courier New;
+    transition: 0.4s;
 }
 body {
-    background-image:linear-gradient(#54aec9, #195266);
-    width: 100vw;
+    background: linear-gradient(#54aec9,#195266);
     height: 100vh;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
     overflow: hidden;
 }
-.App {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-}
-#body-calculator {
-    height: 600px;
+#calculator {
     width: 300px;
-    background-color: #172d67;
-    border-radius: 30px;
-    box-shadow: 0px 0px 150px rgba(13, 13, 13, 0.9);
+    height: 600px;
     margin: auto;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-#result {
-    height: 40%;
     position: relative;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    color: white;
-    transition: all 0.5s ease;
 }
-#ResultValue {
+.delete {
+    background-image: url('./images/delete.png');
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #00000008 !important;
+}
+#toggle-theme {
+    height: 30px;
+    width: 60px;
     position: absolute;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 1.5rem;
-    top: 45%;
-    left: 100%;
-    padding-right: 15px;
-    transform: translate(-100%, -50%);
-    text-align: right;
-    width: 100%;
-}
-#ResultValue > span {
-    color: rgba(255, 254, 254, 0.3);
-}
-.ResultOficial {
-    position: relative;
-    top: 60%;
-    transform: translateY(-50%;);
-    font-size: 3rem;
-    text-align: right;
-    padding-right: 15px;
-}
-#numbers {
-    height: 60%;
-    width: 75%;
-    float: left;
-}
-#operators {
-    height: 60%;
-}
-.buttons {
-    width: 33.333335%;
-    height: 25%;
-    font-size: 40px;
-    background-color: #050c26;
-    border: none;
-    color: white;
+    margin: 17px;
     cursor: pointer;
-    transition: all 0.5s ease;
+    border-radius: 30px;
+    background-color: #6878a2;
+    z-index: 1;
+}
+.toggle-point {
+    width: 25px;
+    border-radius: 50%;
+    height: 25px;
+    margin-top: 2.5px;
+}
+#toggle-dark {
+    background-image: url('./images/lua.png');
+    background-size: cover;
+    background-position: center;
+    margin-left: 5px;
+}
+#toggle-white {
+    background-image: url('./images/sun.png');
+    background-size: cover;
+    background-position: center;
+    margin-top: -25px;
+    margin-left: 30px;
+    opacity: 0;
 }
 
-.buttons-operator {
-    width: 25%;
-    height: 16.666666666666668%;
-    font-size: 40px;
-    background-color: #0a173a;
-    border: none;
+#panel {
+    height: 40%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    background-color: #172d67;
     color: white;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    position: relative;
+}
+#value-panel {
+    padding: 20px;
+    font-size: 50px;
+}
+#preview {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+}
+#buttons {
+    display: flex;
+    background-color: rgb(240, 240, 240);
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+#buttons-container-01 {
+    width: 225px;
+    display: flex;
+    flex-flow: wrap;
+    flex-direction: row-reverse;
+    align-content: space-between;
+}
+
+#buttons-container-02 {
+    max-inline-size: min-content;
+}
+
+.buttons {
+    color: white;
+    border: none;
     cursor: pointer;
-    transition: all 0.5s ease;
+    font-size: 30px;
+    width: 75px;
 }
-.apagar {
-    background-image: url("./images/dark-delete.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 35px;
-    color: transparent !important;
+.button-number {
+    height: 90px;
+    background-color: #050c26;
 }
-.zero {
+.button-number:hover {
+    background-color: #0b1330;
+}
+.button-simbol {
+    height: 60px;
+    background-color: #0a173a;
+}
+
+.button-simbol:hover {
+    background-color: #081333;
+}
+.radius-left {
     border-bottom-left-radius: 30px;
 }
-.sum {
+.radius-right {
     border-bottom-right-radius: 30px;
 }
 
 
-/* =============| Config ==============*/
+/*--------------- White mode ---------------- */
 
-/*dark mode class*/
-.dark-bg {
-    background-color: #172d67;
-    color: white;
+.radius-button {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-top: 6px;
+    margin-left: 8px;
+    background-color: #fe812e;
 }
-.dark-btn {
-    background-color: #050c26;
-    color: white;
+.radius-button:hover {
+    background-color: #fd6500;
 }
-.dark-btn:hover {
-    background-color: #0b1330;
-}
-.dark-btn-Oper {
-    background-color: #0a173a;
-    color: white;
-}
-.dark-btn-Oper:hover {
-    background-color: #081333;
-}
-
-/* No dark mode class*/
-.noDark-bg {
-    background-color: #9db3ed;
+.panel-white {
+    background-color: rgb(224 224 224) !important;
     color: black !important;
 }
-.noDark-btn {
-    background-color: #d3dce2;
-    color: #535353;
+.number-white {
+    color: #626262;
+    background-color: #f0f0f0;
 }
-.noDark-btn:hover {
-    background-color: rgba(255, 255, 255, 0.7);
-}
-.noDark-btn-Oper {
-    background-color: #fffdff;
-    color: #5770a9;
-}
-.noDark-btn-Oper:hover {
-    background-color: rgba(255, 255, 255, 0.80);
+.number-white:hover {
+    background-color: #cecdcd;
 }
 
-
-#config {
-    position: absolute;
-    top: 20px;
-    left: 10px;
-}
-#togle {
-    background-color: #6878a2;
-    height: 30px;
-    width: 55px;
-    border-radius: 50px;
-    position: relative;
-    cursor: pointer;
-}
-#on {
-    background-image: url('./images/lua.png');
-    background-size: cover;
-    background-position: center;
-    background-color: #fbfff7;
-    height: 20px;
-    width: 20px;
-    position: absolute;
-    top: 5px;
-    border-radius: 50%;
-    left: 5px;
-    transition: all 0.5s ease;
-}
-#off {
-    background-image: url('./images/sun.png');
-    background-size: cover;
-    background-position: center;
-    background-color: transparent;
-    height: 20px;
-    width: 20px;
-    position: absolute;
-    top: 5px;
-    border-radius: 50%;
-    left: 30px;
-    transition: all 0.5s ease;
-}
-
-.turnOn {
-    opacity: 1;
-    transform: scale(1);
-}
-.turnOff {
-    opacity: 0;
-    transform: scale(0)
-}

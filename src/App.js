@@ -1,199 +1,200 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import changeTheme from './changeTheme'
 import './style.css'
 
 function App() {
-    useEffect(() => {
-        require('./script.js')
-    }, [])
+  const [value, setValue] = useState("0")
+  const [result, setResult] = useState({
+    number01: "0",
+    number02: null,
+    operationType: null
+  })
+  const [preview, setPreview] = useState({
+    numb01: "0",
+    numb02: "",
+    result: ""
+  })
 
-    const [initialValue, setValue] = useState({
-        operator: false,
-        values: ["0", String()],
-        typeOperator: String(),
-        simbolOperator: String()
-    })
+  useEffect(() => {
+    changeTheme()
+  }, [])
+
+  useEffect(() => {
+    previewState()
+
+    if (value === "" || value.length === 0) {
+      setValue("0")
+    }
+  }, [value, result])
+
+  function insertButtons() {
+    var numbers = []
+    var simbols = []
+
+    for (var c=1; c < 10; c++) {
+      numbers.push(<button className="button-number buttons" onClick={(c) => newNumber(c.target.innerHTML)}>{c}</button>)
+    }
     
-    function digit(valor) {
-        function addNew() {
-            var local = document.querySelector(".ResultOficial")
-            if (local.innerText === "0" && initialValue.operator == false) {
-                var newvalues = initialValue.operator === true
-                ? initialValue.values[1] = `${valor}`
-                : initialValue.values[0] = `${valor}`
-            } else {
-                var newvalues = initialValue.operator === true
-                ? initialValue.values[1] += `${valor}`
-                : initialValue.values[0] += `${valor}`
-            }
-            setValue({
-                operator: initialValue.operator,
-                values: initialValue.operator === true
-                ? [initialValue.values[0], `${newvalues}`]
-                : [`${newvalues}`, String()]
-                ,typeOperator: initialValue.typeOperator,
-                simbolOperator: initialValue.simbolOperator
-            })
-        }
-        if (initialValue.values[0].length < 9 && initialValue.operator == false){
-            addNew()
-        }
-        if (initialValue.operator == true && initialValue.values[1].length < 9) {
-            addNew()
-        }
-    }
-    function pont(valor) {
-        function newAdd() {
-            var newvalues = initialValue.operator === true
-            ? initialValue.values[1] += initialValue.values[1].length == 0 ? `0${valor}` : `${valor}`
-            : initialValue.values[0] += initialValue.values[0].length == 0 ? `0${valor}` : `${valor}`
-            setValue({
-                operator: initialValue.operator,
-                values: initialValue.operator === true
-                    ? [initialValue.values[0], `${newvalues}`]
-                    : [`${newvalues}`, String()]
-                ,typeOperator: initialValue.typeOperator,
-                simbolOperator: initialValue.simbolOperator
-            })
-        }
-        if ((String(initialValue.values[0]).indexOf(".") == -1 && initialValue.operator == false)) {
-            newAdd()
-        } else {
-            if ((String(initialValue.values[1]).indexOf(".") == -1) && initialValue.operator == true) {
-                newAdd()
-            }
-        }
-    }
-    function Clear() {
-        document.querySelector("#result").style.animationName = "clearAnimated"
-        setTimeout(() => {
-            document.querySelector("#result").style.animationName = ""
-        }, 500)
-        setValue({
-            operator: false,
-            values: ["0", String()],
-            typeOperator: String(),
-            simbolOperator: String()
+    numbers.reverse()
+    numbers.push(<button className="button-number buttons" onClick={() => operation("=")}>=</button>)
+    numbers.push(<button className="button-number buttons" onClick={() => newNumber(".")}>.</button>)
+    numbers.push(<button className="button-number buttons radius-left" onClick={() => newNumber("0")}>0</button>)
+
+    simbols.push(<button className="button-simbol buttons delete" onClick={() => operation("delete")}>.</button>)
+    simbols.push(<button className="button-simbol buttons" onClick={() => operation("C")}>C</button>)
+    simbols.push(<button className="button-simbol buttons" onClick={() => operation("÷")}>÷</button>)
+    simbols.push(<button className="button-simbol buttons" onClick={() => operation("x")}>x</button>)
+    simbols.push(<button className="button-simbol buttons" onClick={() => operation("-")}>-</button>)
+    simbols.push(<button className="button-simbol buttons radius-right" onClick={() => operation("+")}>+</button>)
+    
+    return {numbers, simbols}
+  }
+
+  function newNumber(number) {
+    if (((number === "." && value.indexOf('.') === -1) || number !== '.') && value.length < 10) {
+
+      // Update value
+      if ((isNaN(Number(value)) === false && value !== "0") || number === ".") {
+        number = value + number
+      }
+
+      setValue(number)
+
+      setPreview({
+        numb01: result.operationType === null ? number : preview.numb01,
+        numb02: result.operationType !== null ? number : preview.numb02,
+        result: preview.result
+      })
+
+      // Update results
+      if (result.operationType === null) {
+        setResult({
+          number01: value,
+          number02: result.number02,
+          operationType: result.operationType
         })
+      } else if (isNaN(Number(value)) === false) {
+        setResult({
+          number01: result.number01,
+          number02: value,
+          operationType: result.operationType
+        })
+      }
     }
-    function operator(oper, simbol) {
-        if (oper == "igual") {
-            if (initialValue.values[0] != "" && initialValue.values[1] != "" ) {
-                var resultado = String()
-                switch (initialValue.typeOperator) {
-                    case "somar":
-                        resultado = Number(initialValue.values[0]) + Number(initialValue.values[1])
-                        break
-                    case "dividir":
-                        resultado = Number(initialValue.values[0]) / Number(initialValue.values[1])
-                        break
-                    case "diminuir":
-                        resultado = Number(initialValue.values[0]) - Number(initialValue.values[1])
-                        break
-                    case "multiplicar":
-                        resultado = Number(initialValue.values[0]) * Number(initialValue.values[1])
-                        break
-                    default:
-                        document.querySelector("#result").innerHTML = "Erro no Sistema"
-                }
-                resultado = resultado.length <= 9 ? resultado : String(resultado).slice(0, 9)
-                setValue({
-                    operator: false,
-                    values: [resultado, String()],
-                    typeOperator: String(),
-                    simbolOperator: String()
-                })
-            }
-        } else {
-            if (document.querySelector("#result").innerText != "") {
-                function NewAdd() {
-                    setValue({
-                        operator: true,
-                        values: initialValue.values,
-                        typeOperator: oper,
-                        simbolOperator: simbol
-                    })
-                }
-                if (initialValue.operator === true) {
-                    NewAdd()
-                } else {
-                    NewAdd()
-                }
-            }
-        }
+  }
+
+  function operation(simbol) {
+    if (simbol === "delete") {
+      var valueRemove = value.slice(0, -1)
+      setValue(valueRemove)
+      setPreview({
+        numb01: result.operationType === null ? valueRemove : preview.numb01,
+        numb02: result.operationType !== null ? valueRemove : preview.numb02,
+        result: preview.result
+      })
+
+    } else if (simbol === "C") {
+      setResult({
+        number01: "0",
+        number02: null,
+        operationType: null
+      })
+      setPreview({
+        numb01: "0",
+        numb02: "",
+        result: ""
+      })
+      setValue("0")
+      
+    } else {
+      if (result.operationType === null && simbol !== "=") {
+        setResult({
+          number01: value,
+          number02: result.number02,
+          operationType: simbol
+        })
+        setValue(simbol)
+      } else if (((simbol === "=" && result.operationType !== null) || (simbol === result.operationType)) && isNaN(Number(value)) === false) {
+        calcResult()
+      }  
     }
-    function calcule(numberOne, numberTwo, operator) {
-        if (initialValue.values[1] != "") {
-            if (operator == "+") {
-                return `${Number(numberOne) + Number(numberTwo)} = `
-            } else if (operator == "-") {
-                return `${Number(numberOne) - Number(numberTwo)} = `
-            } else if (operator == "x") {
-                return `${Number(numberOne) * Number(numberTwo)} = `
-            } else if (operator == "÷") {
-                return `${Number(numberOne) / Number(numberTwo)} = `
-            } else {
-                return ""
-            }
-        }
-    }
-    function apagar() {
-        if (initialValue.operator == false && initialValue.values[0] !== "0") {
-            var deletar = initialValue.values[0].slice(initialValue.values[0].length - 1, initialValue.values[0].length)
-            setValue({
-                operator: initialValue.operator,
-                values: [initialValue.values[0].substring(0, initialValue.values[0].lastIndexOf(deletar)), initialValue.values[1]],
-                typeOperator: initialValue.typeOperator,
-                simbolOperator: initialValue.simbolOperator
-            })
-        } else if (initialValue.operator == true) {
-            var deletar = initialValue.values[1].slice(initialValue.values[1].length - 1, initialValue.values[1].length)
-            setValue({
-                operator: initialValue.operator,
-                values: [initialValue.values[0], initialValue.values[1].substring(0, initialValue.values[1].lastIndexOf(deletar))],
-                typeOperator: initialValue.typeOperator,
-                simbolOperator: initialValue.simbolOperator
-            })
-        }
-    }    
-    return (
-        <div id="body-calculator">
-            <div id="result">
-                <div id="config">
-                    <div id="togle">
-                        <div id="on" className="turnOn"></div>
-                        <div id="off" className="turnOff"></div>
-                    </div>
-                </div>
-                <div id="ResultValue">
-                    <span> {calcule(initialValue.values[0], initialValue.values[1], initialValue.simbolOperator)}</span>
-                     {initialValue.values[0]} {initialValue.simbolOperator} {initialValue.values[1]}
-                </div>
-                <div className="ResultOficial">{initialValue.values[1] || initialValue.simbolOperator || initialValue.values[0]}</div>
-            </div>
-            <div id="numbers">
-                <button className="buttons" onClick={() => { digit(7) }}>7</button>
-                <button className="buttons" onClick={() => { digit(8) }}>8</button>
-                <button className="buttons" onClick={() => { digit(9) }}>9</button>
-                <button className="buttons" onClick={() => { digit(4) }}>4</button>
-                <button className="buttons" onClick={() => { digit(5) }}>5</button>
-                <button className="buttons" onClick={() => { digit(6) }}>6</button>
-                <button className="buttons" onClick={() => { digit(1) }}>1</button>
-                <button className="buttons" onClick={() => { digit(2) }}>2</button>
-                <button className="buttons" onClick={() => { digit(3) }}>3</button>
-                <button className="buttons zero" onClick={() => { digit(0) }}>0</button>
-                <button className="buttons virg" onClick={() => { pont(".") }}>.</button>
-                <button className="buttons equal" onClick={() => { operator("igual", "=") }}>=</button>
-            </div>
-            <div id="operators">
-                <button className="buttons-operator apagar" onClick={() => { apagar() }}>.</button>
-                <button className="buttons-operator" onClick={() => { Clear() }}>C</button>
-                <button className="buttons-operator div" onClick={() => { operator("dividir", "÷") }}>÷</button>
-                <button className="buttons-operator multi" onClick={() => { operator("multiplicar", "x") }}>x</button>
-                <button className="buttons-operator sub" onClick={() => { operator("diminuir", "-") }}>-</button>
-                <button className="buttons-operator sum" onClick={() => { operator("somar", "+") }}>+</button>
-            </div>
+  }
+
+  function calculation() {
+    var num01 = Number(result.number01)
+    var num02 = Number(value)
+
+    if (result.operationType === "+")
+      return num01 + num02
+    else if (result.operationType === "-")
+      return num01 - num02
+    else if (result.operationType === "÷")
+      return num01 / num02
+    else if (result.operationType === "x")
+      return num01 * num02    
+  }
+
+  function calcResult() {
+    var calcResult = calculation()
+    
+    setResult({
+      number01: String(calcResult),
+      number02: null,
+      operationType: null
+    })
+
+    setPreview({
+      numb01: String(calcResult).substring(0, 10),
+      numb02: "",
+      result: ""
+    })
+
+    setValue(String(calcResult).substring(0, 10))
+  }
+
+  function previewState() {
+    var calcResult = calculation()
+
+    if (typeof calcResult !== "undefined") 
+      calcResult = String(calcResult).length > 4 && String(calcResult).indexOf(".") !== -1 ? calcResult.toFixed(4) : calcResult
+
+    setPreview({
+      numb01: preview.numb01,
+      numb02: preview.numb02,
+      result: typeof calcResult === 'undefined' || isNaN(calcResult) ? "" : " = " + String(calcResult)
+    })
+
+  }
+
+  return (
+    <div id="calculator">
+      <div id="toggle-theme">
+        <div className="toggle-point" id="toggle-dark"></div>
+        <div className="toggle-point" id="toggle-white"></div>
+      </div>
+
+      <section id="panel">
+        <div id="value-panel">{value}</div>
+        <div id="preview">{preview.numb01} {result.operationType} {preview.numb02} {preview.result}</div>
+      </section>
+
+      <section id="buttons">
+        <div id="buttons-container-01">
+          {
+            insertButtons().numbers.map((element) => element)
+          }
         </div>
-    )    
+
+        <div id="buttons-container-02">
+          {
+            insertButtons().simbols.map((element) => element)
+          }
+        </div>
+      </section>
+    </div>
+  )
 }
 
-export default App;
+
+
+export default App
