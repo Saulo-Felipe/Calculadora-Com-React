@@ -5,13 +5,13 @@
 ------------------------------------
 ## Índice
 
+* [Preview](#preview)
 * [Sobre](#sobre)
 * [Layout](#layout)
 * [Como Executar](#como-executar)
 * [Tecnologias](#tecnologias)
 * [Autor](#autor)
 * [Licença](#licenca)
-* <a href="https://calculadora-react-saulo.herokuapp.com/" target="_blank">🖩 Calculadora com ReactJS ---- Concluído ✅ ----</a>
 
 ------------------------------------
 
@@ -19,6 +19,12 @@
  
  🖩 Calculadora completa com todas as funcionalidades desenvolvida com React ⚛️
 <br>
+
+------------------------------------
+
+## 🚀 Preview <a id="preview"></a>
+
+-> https://calculadora-com-react-81de.vercel.app/
 
 ------------------------------------
 
@@ -33,8 +39,8 @@
 
 ## 🎨 Layout <a id="layout"></a>
 
-<a href="https://calculadora-react-saulo.herokuapp.com/"><img src="./src/images/badge.png"/></a>
-<p>*O Layout completo do app está disponível na hospedagem <a href="https://calculadora-react-saulo.herokuapp.com/">Heroku</a></p> (O carregamento da página pode demorar alguns segundos quando for entrar pela primeira vez)
+<a href="https://calculadora-com-react-81de.vercel.app/"><img src="./src/images/badge.png"/></a>
+<p>*O Layout completo do app está disponível <a href="https://calculadora-com-react-81de.vercel.app/">aquo</a></p> (O carregamento da página pode demorar alguns segundos quando for entrar pela primeira vez)
 
 <h3>Mobile (web)</h3>
 <p align="center">
@@ -80,7 +86,7 @@ Neste simples app, foram utilizadas as seguintes tcnologias:
 
 ## 👨 Autor <a id="autor"></a>
 
-<p align="center">➡️ Criado e desenvolvido por <strong>eu</strong> mesmo 🧑‍💻.</p>
+<p align="center">➡️ Desenvolvido por <strong>eu</strong> mesmo 🧑‍💻.</p>
 
 ------------------------------------
 
