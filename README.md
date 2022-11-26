@@ -40,7 +40,7 @@
 ## 🎨 Layout <a id="layout"></a>
 
 <a href="https://calculadora-com-react-81de.vercel.app/"><img src="./src/images/badge.png"/></a>
-<p>*O Layout completo do app está disponível <a href="https://calculadora-com-react-81de.vercel.app/">aquo</a></p> (O carregamento da página pode demorar alguns segundos quando for entrar pela primeira vez)
+<p>*O Layout completo do app está disponível <a href="https://calculadora-com-react-81de.vercel.app/">aqui</a>.</p> (O carregamento da página pode demorar alguns segundos quando for entrar pela primeira vez)
 
 <h3>Mobile (web)</h3>
 <p align="center">
